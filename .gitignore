@@ -33,6 +33,7 @@ reated by https://www.gitignore.io/api/intellij
 
 # IntelliJ
 /out/
+/out
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

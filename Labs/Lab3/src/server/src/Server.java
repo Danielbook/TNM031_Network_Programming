@@ -1,16 +1,13 @@
-package server.src;
-
 import javax.net.ssl.*;
 import java.io.*;
-import java.net.InetAddress;
 import java.security.KeyStore;
 
 public class Server {
     private int port;
 
     static final int DEFAULT_PORT = 8189;
-    static final String LABKEYSTORE = "/Users/Daniel/Skolarbeten/Nuvarande/TNM031_Network_Programming/Labs/Lab3/src/client/assets/LIUkeystore.ks";
-    static final String LABTRUSTSTORE = "/Users/Daniel/Skolarbeten/Nuvarande/TNM031_Network_Programming/Labs/Lab3/src/client/assets/LIUtruststore.ks";
+    static final String LABKEYSTORE = "src/server/resources/LIUkeystore.ks";
+    static final String LABTRUSTSTORE = "src/server/resources/LIUtruststore.ks";
     static final String LABSTOREPASSWD = "123456";
     static final String LABALIASPASSWD = "123456";
 
@@ -18,7 +15,7 @@ public class Server {
     static final String CMD_UPLOAD = "cmd:upload";
     static final String CMD_DOWNLOAD = "cmd:download";
     static final String CMD_END = "cmd:end";
-    static final String OUTPUT_FOLDER = "/Users/Daniel/Skolarbeten/Nuvarande/TNM031_Network_Programming/Labs/Lab3/src/server/server_files/";
+    static final String OUTPUT_FOLDER = "src/server/server_files/";
 
     BufferedReader inputStream;
     PrintWriter outputStream;
@@ -98,7 +95,7 @@ public class Server {
         try {
             String str;
             String fileName = null;
-            while (!(str = inputStream.readLine()).equals("cmd:end")) {
+            while (!(str = inputStream.readLine()).equals(CMD_END)) {
                 // receive filename
                 fileName = str;
                 System.out.println("filename: " + fileName);
@@ -122,7 +119,7 @@ public class Server {
             System.out.println("ending, file sent");
 
             // notify client end of file transmission
-            outputStream.println("cmd:end");
+            outputStream.println(CMD_END);
         } catch (Exception e) {
             outputStream.println("Something went wrong");
             System.out.println(e);
@@ -134,7 +131,7 @@ public class Server {
         try {
             String str;
             String fileName = null;
-            while (!(str = inputStream.readLine()).equals("cmd:end")) {
+            while (!(str = inputStream.readLine()).equals(CMD_END)) {
                 fileName = str;
             }
 

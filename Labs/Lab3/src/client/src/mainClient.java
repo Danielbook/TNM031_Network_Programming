@@ -1,9 +1,7 @@
-package client.src;
-
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-public class Main {
+public class mainClient {
     public static void main(String[] args) {
         try {
             InetAddress host = InetAddress.getLocalHost();

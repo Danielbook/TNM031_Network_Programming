@@ -1,5 +1,3 @@
-package client.src;
-
 import javax.net.ssl.*;
 import java.io.*;
 import java.net.InetAddress;
@@ -13,8 +11,8 @@ public class Client {
     private PrintWriter socketOut;
 
     static final int DEFAULT_PORT = 8189;
-    static final String LABKEYSTORE = "/Users/Daniel/Skolarbeten/Nuvarande/TNM031_Network_Programming/Labs/Lab3/src/server/assets/LIUkeystore.ks";
-    static final String LABTRUSTSTORE = "/Users/Daniel/Skolarbeten/Nuvarande/TNM031_Network_Programming/Labs/Lab3/src/server/assets/LIUtruststore.ks";
+    static final String LABKEYSTORE = "src/server/resources/LIUkeystore.ks";
+    static final String LABTRUSTSTORE = "src/client/resources/LIUkeystore.ks";
     static final String LABSTOREPASSWD = "123456";
     static final String LABALIASPASSWD = "123456";
 
@@ -22,7 +20,7 @@ public class Client {
     static final String CMD_UPLOAD = "cmd:upload";
     static final String CMD_DOWNLOAD = "cmd:download";
     static final String CMD_END = "cmd:end";
-    static final String OUTPUT_FOLDER = "/Users/Daniel/Skolarbeten/Nuvarande/TNM031_Network_Programming/Labs/Lab3/src/client/files/";
+    static final String OUTPUT_FOLDER = "src/client/files/";
 
     public Client(InetAddress hostAddress) {
         this.hostAddress = hostAddress;

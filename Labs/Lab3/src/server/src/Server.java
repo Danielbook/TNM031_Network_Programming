@@ -87,7 +87,35 @@ public class Server {
     }
 
     private void receiveFromClient() {
+        StringBuilder fileContent = new StringBuilder();
+        String fileName = null;
+        String str;
+        try {
+            while (!(str = inputStream.readLine()).equals(CMD_END)) {
+                // First line will be the filename
+                if (fileName == null) {
+                    fileName = str;
+                } else {
+                    fileContent.append(str + "\n");
+                }
+            }
 
+            System.out.println("filename: " + fileName);
+
+            // write to file
+            String file = fileContent.toString();
+            try (BufferedWriter writer = new BufferedWriter(
+                    new FileWriter(OUTPUT_FOLDER + fileName))) {
+                writer.write(file, 0, file.length());
+            } catch (IOException x) {
+                System.err.format("IOException: %s%n", x);
+            }
+            System.out.println("DONE client to server");
+        } catch (Exception e) {
+            outputStream.println("Something went wrong");
+            System.out.println(e);
+            e.printStackTrace();
+        }
     }
 
     private void sendToClient() {
